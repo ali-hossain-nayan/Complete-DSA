@@ -78,7 +78,7 @@ class LinkedList {
             return undefined;
         }
 
-        let temp = this.head;//take head and store it in temp
+        let temp = this.head;//take head and store it in temp a copy
         this.head = this.head.next;//head to head->next
 
         temp.next = null;//then head null kore delam.
@@ -119,10 +119,10 @@ class LinkedList {
     }
 
     set(index, value) {
-        let temp = this.getElementByIndex(index);
+        let temp = this.getElementByIndex(index);//get the index
 
         if (temp) {
-            temp.value = value;
+            temp.value = value;//and set the index value if its so.
             return true;
         }
         return false;
@@ -133,10 +133,10 @@ class LinkedList {
 
     insertNode(index, value) {
         if (index === 0) {
-            return this.unshift(value);
+            return this.unshift(value);//if only one 0 index it means put the value in first with unshift method
         }
         if (index === this.length) {
-            return this.push(value);
+            return this.push(value);//if index==length then put it last 
         }
         const newNode = new Node(value);
         let temp = this.getElementByIndex(index - 1);//access the target prev node
@@ -181,4 +181,57 @@ newLinkedList.push(22)
 // console.log(newLinkedList.insertNode(1, 20));
 // console.log(newLinkedList.size())
 // console.log(newLinkedList.clear())
+
+
+
+
+
+
+
+
+
+// -------------   Doubly LinkedList     -------------
+
+
+class DoublyNode {
+    constructor(value) {
+        this.head = value;
+        this.next = null;
+
+        this.prev = null;
+    }
+}
+
+
+
+class DoublyLinkedList {
+    constructor(value) {
+        const newNode = new Node(value);
+        this.head = newNode;
+        this.tail = this.head;
+        this.length = 1;
+    }
+
+
+
+    push(value) {
+        const newNode = new Node(value);
+
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        }
+
+        this.tail.next = newNode;//tail->next newNode
+        newNode.prev = this.tail//newNode->prev tail as doubly LinkedList next,prev two side connection
+        this.tail = newNode;
+        this.length++;
+        return this;
+
+    }
+
+}
+let myDoublyLinkedList = new DoublyLinkedList(0)
+myDoublyLinkedList.push(1);
+console.log(myDoublyLinkedList)
 
