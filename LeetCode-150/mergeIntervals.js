@@ -3,8 +3,8 @@
  * @return {number[][]}
  */
 var merge = function (intervals) {
-    let sortedIntervals = intervals.sort((a, b) => a[0] - b[0]);
-    let mergedIntervals = [sortedIntervals[0]];
+    let sortedIntervals = intervals.sort((a, b) => a[0] - b[0]);//sorting with the start time
+    let mergedIntervals = [sortedIntervals[0]];//initialize merged array with the first intervals
 
     for (let i = 1; i < sortedIntervals.length; i++) {
         let lastInterval = mergedIntervals[mergedIntervals.length - 1];
@@ -19,3 +19,8 @@ var merge = function (intervals) {
     return mergedIntervals;
 
 };
+
+
+// Two intervals overlap if the start of the current interval is less than or equal to the end of the previous one.
+// If they overlap, merge them into a single interval by taking the minimum start time and the maximum end time.
+// If they don't overlap, add the previous interval to the result list, and move to the next one.
