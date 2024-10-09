@@ -14,7 +14,6 @@ var getMinimumDifference = function (root) {
     let prev = null;
     let minDifference = Infinity;
 
-
     const inOrderTraversal = (node) => {
         if (!node) return;
 
